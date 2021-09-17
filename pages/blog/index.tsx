@@ -25,10 +25,10 @@ export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
 				<StyledContainer>
 					<NavBar homeUrl="/blog" navList={navList} />
 					<main className="main container">
-						<h1 className="heading">Hey, I'm Ochuko Ekrresa</h1>
+						<h1 className="heading">Ekrresa's Blog</h1>
 						<p className="heading__text">
 							I'm a software engineer based in Lagos, Nigeria. This is where I write about
-							things I'm interested in.
+							things that catch my interest.
 						</p>
 					</main>
 
@@ -36,16 +36,28 @@ export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
 						<h2 className="article__heading">Articles</h2>
 						<ul className="articles">
 							{allPostsData.map(data => (
-								<li key={data.id} className="post__card">
-									<Link href={`/blog/${data.id}`} passHref>
-										<div>
-											<p className="post__date">
-												{format(new Date(JSON.parse(data.date)), 'MMMM d, yyyy')}
-											</p>
-											<h3>{data.title}</h3>
-											<p>{data.summary}</p>
+								<li key={data.slug} className="post__card">
+									<div className="post__header">
+										<p className="post__date">
+											{format(new Date(JSON.parse(data.date)), 'MMMM d, yyyy')}
+										</p>
+
+										<span className="hyphen">&#8211;</span>
+
+										<div className="post__tags">
+											{data.tags.map(tag => (
+												<span key={tag} className="tag">
+													{tag}
+												</span>
+											))}
 										</div>
+									</div>
+
+									<Link href={`/blog/${data.slug}`} passHref>
+										<a className="title">{data.title}</a>
 									</Link>
+
+									<p>{data.summary}</p>
 								</li>
 							))}
 						</ul>
@@ -68,18 +80,18 @@ const StyledContainer = styled.section`
 	position: relative;
 
 	.main {
-		margin-top: 13em;
+		margin-top: 6em;
 
 		.heading {
 			font-size: 3rem;
 			font-weight: 600;
-			color: #094067e6;
+			color: #094067;
 			margin-bottom: 0;
 		}
 
 		.heading__text {
 			font-size: 1.2rem;
-			color: #094067e6;
+			color: #094067;
 			max-width: 44em;
 			line-height: 1.6;
 		}
@@ -89,33 +101,63 @@ const StyledContainer = styled.section`
 		font-size: 2rem;
 		margin-top: 3em;
 		margin-bottom: 1em;
-		color: #094067e6;
+		color: #094067;
 		font-weight: 600;
 	}
 
 	.articles {
 		display: grid;
-		grid-template-columns: auto auto;
+		grid-template-columns: 1fr 1fr;
 		gap: 3em;
 		list-style: none;
 		padding-left: 0;
+		margin-bottom: 3em;
 	}
 
 	.post__card {
-		border-radius: 4px;
-		margin-bottom: 3em;
-		cursor: pointer;
 		color: #094067;
 
-		.post__date {
-			margin: 0;
-			font-size: 0.85rem;
-			font-weight: 500;
+		.post__header {
+			display: flex;
+			align-items: baseline;
+
+			.post__date {
+				margin: 0;
+				font-size: 0.85rem;
+				font-weight: 500;
+			}
+
+			.hyphen {
+				margin: 0 0.5em;
+			}
+
+			.post__tags {
+				text-transform: uppercase;
+
+				.tag {
+					margin-right: 0.7em;
+					font-size: 0.9rem;
+					text-transform: lowercase;
+
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+			}
 		}
 
-		h3 {
-			font-size: 1.2rem;
-			color: #ee495c;
+		a {
+			color: inherit;
+
+			&:hover {
+				--d: none;
+			}
+		}
+
+		.title {
+			display: inline-block;
+			font-size: 1.7rem;
+			color: #b14949;
 			margin-top: 0.3em;
 			font-weight: 600;
 		}
