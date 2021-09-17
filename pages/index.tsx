@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { motion, Variants } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
@@ -10,7 +11,7 @@ import { Body } from '../components/Body';
 import { NavBar } from '../components/NavBar';
 import { Project } from '../components/Project';
 import { Footer } from '../components/Footer';
-import Link from 'next/link';
+import EntryWay from '../public/entryway.svg';
 
 const navList = [
 	{ text: 'blog', url: '/blog' },
@@ -128,7 +129,7 @@ export default function Homepage() {
 								Utu Technologies
 							</a>
 							, focused on making improvements to their ride infrastructure. I write{' '}
-							<Link href="/blog">here.</Link> Check out my{' '}
+							<Link href="/blog">here.</Link> Also, check out my{' '}
 							<a
 								href="https://github.com/chukky-ekrresa"
 								target="_blank"
@@ -167,7 +168,7 @@ export default function Homepage() {
 						<h2 className="section__header">About Me</h2>
 
 						{/* https://www.drawkit.io/illustrations/entryway-monochrome */}
-						<img className="about__background" src="/entryway.svg" alt="" />
+						<EntryWay className="about__background" />
 						<div className="text">
 							<p>
 								Hi, I'm Ochuko Ekrresa, a software engineer currently based in Lagos,
@@ -206,23 +207,6 @@ export default function Homepage() {
 
 						<Project
 							alignment="right"
-							imageAlt="Jumga E-commerce Homepage"
-							imagePublicID="v1620831063/personal/portfolio/WxfJo6O_xfnmg4"
-							projectDesc="An e-commerce platform for users in Nigeria, Ghana, Kenya, and the UK. Built in 2 weeks. Payments are handled by Flutterwave."
-							projectLink="https://fluttermart.vercel.app/"
-							projectTitle="Jumga"
-							stack={['React', 'MongoDB', 'Tailwind CSS', 'React Testing Library']}
-							links={[
-								{ url: 'https://fluttermart.vercel.app/', Icon: FiExternalLink },
-								{
-									url: 'https://github.com/chukky-ekrresa/fluttermart',
-									Icon: AiOutlineGithub,
-								},
-							]}
-						/>
-
-						<Project
-							alignment="left"
 							imageAlt="star wars directory homepage"
 							imagePublicID="v1620830802/personal/portfolio/kH5eM1v_e4mkrd"
 							projectDesc="A web app to explore the star wars mythology."
@@ -254,7 +238,7 @@ export default function Homepage() {
 						</div>
 						<div style={{ marginTop: '2em' }}>
 							<a className="btn contact__btn" href="mailto:ekrresaochuko@gmail.com">
-								Contact Me
+								Say hi
 							</a>
 						</div>
 					</div>
@@ -386,7 +370,7 @@ const Main = styled.section`
 			text-transform: uppercase;
 			font-size: 1.2rem;
 			color: #094067d6;
-			text-shadow: 0px 4px 4px rgba(166, 73, 116, 0.25);
+			text-shadow: 0px 4px 4px rgb(55 57 187 / 25%);
 
 			@media (min-width: 546px) {
 				justify-content: center;
@@ -439,11 +423,7 @@ const Main = styled.section`
 		}
 
 		@media (min-width: 880px) {
-			margin-top: 10em;
-		}
-
-		@media (min-width: 1100px) {
-			margin-top: 14em;
+			margin-top: 7em;
 		}
 	}
 `;
