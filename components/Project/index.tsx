@@ -126,7 +126,8 @@ const StyledProject = styled.section<{ alignment: string }>`
 
 		h2 {
 			font-family: var(--font-fam-heading);
-			font-size: 1.3rem;
+			font-size: 1.4rem;
+			font-weight: 600;
 			margin-top: 0;
 			color: #0e5e97;
 		}

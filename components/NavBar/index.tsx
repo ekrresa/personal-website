@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { Hamburger } from '../Hamburger';
+import Logo from '../../public/logo.svg';
 
 type NavProps = {
 	homeUrl: string;
@@ -42,7 +43,11 @@ export function NavBar(props: NavProps) {
 	return (
 		<StyledHeader className="nav__container">
 			<div className="logo">
-				<Link href={homeUrl}>EKRRESA</Link>
+				<Link href={homeUrl} passHref>
+					<a>
+						<Logo className="logo__icon" />
+					</a>
+				</Link>
 			</div>
 
 			{/* Mobile menu */}
@@ -79,13 +84,6 @@ const StyledHeader = styled.header`
 	padding-bottom: 1.5em;
 
 	.logo {
-		text-transform: lowercase;
-		color: #0e5e97;
-		letter-spacing: 1px;
-		font-size: 2.5rem;
-		letter-spacing: 0.5px;
-		text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
 		a {
 			font-weight: 700;
 			font-family: var(--font-fam-text);
@@ -96,21 +94,23 @@ const StyledHeader = styled.header`
 				--d: none;
 			}
 		}
+
+		.logo__icon {
+			width: 3.5rem;
+		}
 	}
 
 	.nav {
 		display: none;
 		align-items: center;
 		color: #0e5e97;
-		font-weight: 500;
-		text-transform: lowercase;
+		text-transform: uppercase;
 
 		.nav__item {
 			margin-right: 2em;
 
 			a {
 				color: inherit;
-				font-size: 1.3rem;
 				font-family: var(--font-fam-text);
 			}
 

@@ -44,6 +44,7 @@ export function Hamburger({ navStatus = false, handleNav, navList }: Props) {
 						className="btn resume__btn"
 						href="https://drive.google.com/file/d/1KdcDdmWYL87CHy2Q-2DGCS01FRIh_-cW/view?usp=sharing"
 						target="_blank"
+						rel="noreferrer noopener"
 					>
 						Resumé
 					</a>
@@ -88,8 +89,8 @@ const StyledHamburger = styled.aside<{ navOpen: boolean }>`
 		li {
 			padding: 0.5em;
 			margin-bottom: 1em;
-			font-size: 1.3rem;
-			text-transform: lowercase;
+			font-size: 1.1rem;
+			text-transform: uppercase;
 
 			&:last-child {
 				margin-bottom: 0;
@@ -98,7 +99,7 @@ const StyledHamburger = styled.aside<{ navOpen: boolean }>`
 			a {
 				color: #094067;
 				font-family: var(--font-fam-text);
-				font-weight: 600;
+				font-weight: 500;
 			}
 		}
 

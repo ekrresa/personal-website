@@ -37,7 +37,7 @@ export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
 						<ul className="articles">
 							{allPostsData.map(data => (
 								<li key={data.id} className="post__card">
-									<Link href={`/blog/${data.id}`}>
+									<Link href={`/blog/${data.id}`} passHref>
 										<div>
 											<p className="post__date">
 												{format(new Date(JSON.parse(data.date)), 'MMMM d, yyyy')}
