@@ -13,8 +13,8 @@ const navList = [
 	{ text: 'contact', url: '/#contact' },
 ];
 
-export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
-	const { allPostsData } = props;
+export default function BlogHome(props: { allPosts: PostFrontMatter[] }) {
+	const { allPosts } = props;
 	return (
 		<>
 			<Head>
@@ -35,7 +35,7 @@ export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
 					<section className="container">
 						<h2 className="article__heading">Articles</h2>
 						<ul className="articles">
-							{allPostsData.map(data => (
+							{allPosts.map(data => (
 								<li key={data.slug} className="post__card">
 									<div className="post__header">
 										<p className="post__date">
@@ -61,16 +61,16 @@ export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
 }
 
 export async function getStaticProps() {
-	const allPostsData = getSortedPostsData();
+	const allPosts = getSortedPostsData();
 
-	return { props: { allPostsData } };
+	return { props: { allPosts } };
 }
 
 const StyledContainer = styled.section`
 	position: relative;
 
 	.main {
-		margin-top: 6em;
+		margin-top: 4em;
 
 		.heading {
 			font-size: 3rem;
