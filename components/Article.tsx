@@ -6,11 +6,14 @@ export const Article = styled.article`
 	font-weight: 400;
 	margin-top: 5em;
 	padding-bottom: 10em;
+	display: grid;
+	grid-template-columns: 1fr min(80ch, 100%) 1fr;
 
 	h2 {
 		font-size: 2rem;
-		font-weight: 600;
+		font-weight: 500;
 		color: #094067;
+		font-family: var(--font-fam-text);
 
 		strong {
 			font-size: 2rem;
@@ -19,20 +22,25 @@ export const Article = styled.article`
 		}
 	}
 
-	.heading {
-		text-align: center;
-		font-size: 2.5rem;
-		font-weight: 500;
+	.back__to__articles {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
 		margin-bottom: 0.4em;
 		color: #094067;
+		cursor: pointer;
+	}
 
-		@media (min-width: 768px) {
-			font-size: 3rem;
-		}
+	.heading {
+		font-size: 2.5rem;
+		font-weight: 600;
+		margin-top: 0;
+		margin-bottom: 0.4em;
+		color: #094067;
+		font-family: var(--font-fam-text);
 	}
 
 	.post__date {
-		text-align: center;
 		margin-bottom: 5em;
 		color: rgb(156, 163, 175);
 	}
@@ -41,10 +49,10 @@ export const Article = styled.article`
 		max-width: 68ch;
 		margin: auto;
 		line-height: 1.6;
-		font-size: 1.25rem;
+		font-size: 1.15rem;
 
 		a {
-			color: #6366f1;
+			color: #4f46e5;
 			font-weight: 500;
 		}
 

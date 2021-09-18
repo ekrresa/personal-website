@@ -33,12 +33,19 @@ const GlobalStyle = createGlobalStyle`
 		--font-fam-heading: 'Work Sans', sans-serif;
 		--font-fam-code: 'Source Code Pro', monospace;
 		--font-fam-text: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-		"Helvetica Neue", Arial, 		sans-serif;
+		"Helvetica Neue", Arial, sans-serif;
+
+		--body-background:#fffffe;
+		--color-link:#6366f1;
+		--dull-blue:#094067;
+		--article-text:#374151
+		--bright-blue:#d8eefe
+		--burnt-red:#ee495c;
   }
 
   body {
     font-family: var(--font-fam-text);
-		background: #fffffe;
+		background: var(--body-background);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
@@ -56,7 +63,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
 	a {
-		color: #4f46e5;
+		color: var(--color-link);
 		font-weight: 600;
 		font-family: var(--font-fam-heading);
 		text-decoration:none;
@@ -71,7 +78,7 @@ const GlobalStyle = createGlobalStyle`
 
 	a.btn {
 		background: inherit;
-		color: #04395e;
+		color: var(--dull-blue);
 		font-family: var(--font-fam-text);
 		padding: 0.7em;
 		border-radius: 5px;

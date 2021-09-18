@@ -41,16 +41,6 @@ export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
 										<p className="post__date">
 											{format(new Date(JSON.parse(data.date)), 'MMMM d, yyyy')}
 										</p>
-
-										<span className="hyphen">&#8211;</span>
-
-										<div className="post__tags">
-											{data.tags.map(tag => (
-												<span key={tag} className="tag">
-													{tag}
-												</span>
-											))}
-										</div>
 									</div>
 
 									<Link href={`/blog/${data.slug}`} passHref>
@@ -107,15 +97,20 @@ const StyledContainer = styled.section`
 
 	.articles {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: auto;
 		gap: 3em;
 		list-style: none;
 		padding-left: 0;
-		margin-bottom: 3em;
+		padding-bottom: 10em;
+
+		@media (min-width: 1000px) {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 
 	.post__card {
 		color: #094067;
+		padding: 1em 0;
 
 		.post__header {
 			display: flex;
@@ -125,18 +120,21 @@ const StyledContainer = styled.section`
 				margin: 0;
 				font-size: 0.85rem;
 				font-weight: 500;
+				white-space: nowrap;
 			}
 
 			.hyphen {
 				margin: 0 0.5em;
+				transform: scale(2);
 			}
 
 			.post__tags {
 				text-transform: uppercase;
 
 				.tag {
-					margin-right: 0.7em;
+					margin-right: 0.5em;
 					font-size: 0.9rem;
+					font-weight: 500;
 					text-transform: lowercase;
 
 					&:last-child {
@@ -160,12 +158,13 @@ const StyledContainer = styled.section`
 			color: #b14949;
 			margin-top: 0.3em;
 			font-weight: 600;
+			font-family: var(--font-fam-text);
 		}
 
 		p {
 			font-size: 0.95rem;
 			opacity: 0.8;
-			font-weight: 500;
+			margin-bottom: 0;
 		}
 	}
 `;

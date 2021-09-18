@@ -4,17 +4,32 @@ import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export function getSortedPostsData() {
-	const fileNames = fs.readdirSync(postsDirectory);
+export async function getPostBySlug(slug: string) {
+	const fullPath = path.join(postsDirectory, `${slug}.md`);
+	const fileContents = fs.readFileSync(fullPath, 'utf8');
+	const matterResult = matter(fileContents);
 
-	const allPostsData = fileNames.map(fileName => {
-		const id = fileName.replace(/\.md$/, '');
+	return {
+		slug,
+		content: matterResult.content,
+		...matterResult.data,
+		date: JSON.stringify(matterResult.data.date),
+	};
+}
+
+export function getSortedPostsData() {
+	const filesInMarkdown = fs
+		.readdirSync(postsDirectory)
+		.filter(fileName => fileName.endsWith('.md'));
+
+	const allPostsData = filesInMarkdown.map(fileName => {
+		const slug = fileName.replace(/\.md$/, '');
 		const filePath = path.join(postsDirectory, fileName);
 		const fileContents = fs.readFileSync(filePath, 'utf8');
 		const matterResult = matter(fileContents);
 
 		return {
-			id,
+			slug,
 			...matterResult.data,
 			date: JSON.stringify(matterResult.data.date),
 		} as PostFrontMatter;
@@ -31,8 +46,13 @@ export function getSortedPostsData() {
 
 export type PostFrontMatter = {
 	date: string;
-	id: string;
+	slug: string;
 	summary: string;
 	tags: string[];
 	title: string;
+	published: boolean;
 };
+
+export type BlogPost = {
+	content: string;
+} & PostFrontMatter;
