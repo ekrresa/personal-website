@@ -65,7 +65,7 @@ const StyledHamburger = styled.aside<{ navOpen: boolean }>`
 	margin-block-start: 0;
 	transition: clip-path 1s ease-out;
 	clip-path: ${({ navOpen }) =>
-		navOpen ? 'circle(120vh at 90% 12%)' : 'circle(81px at 90% -12%)'};
+		navOpen ? 'circle(120vh at 90% 12%)' : 'circle(81px at 90% -20%)'};
 	z-index: 5;
 
 	.close {

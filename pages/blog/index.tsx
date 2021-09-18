@@ -13,8 +13,8 @@ const navList = [
 	{ text: 'contact', url: '/#contact' },
 ];
 
-export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
-	const { allPostsData } = props;
+export default function BlogHome(props: { allPosts: PostFrontMatter[] }) {
+	const { allPosts } = props;
 	return (
 		<>
 			<Head>
@@ -25,27 +25,29 @@ export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
 				<StyledContainer>
 					<NavBar homeUrl="/blog" navList={navList} />
 					<main className="main container">
-						<h1 className="heading">Hey, I'm Ochuko Ekrresa</h1>
+						<h1 className="heading">Ekrresa's Blog</h1>
 						<p className="heading__text">
 							I'm a software engineer based in Lagos, Nigeria. This is where I write about
-							things I'm interested in.
+							things that catch my interest.
 						</p>
 					</main>
 
 					<section className="container">
 						<h2 className="article__heading">Articles</h2>
 						<ul className="articles">
-							{allPostsData.map(data => (
-								<li key={data.id} className="post__card">
-									<Link href={`/blog/${data.id}`} passHref>
-										<div>
-											<p className="post__date">
-												{format(new Date(JSON.parse(data.date)), 'MMMM d, yyyy')}
-											</p>
-											<h3>{data.title}</h3>
-											<p>{data.summary}</p>
-										</div>
+							{allPosts.map(data => (
+								<li key={data.slug} className="post__card">
+									<div className="post__header">
+										<p className="post__date">
+											{format(new Date(JSON.parse(data.date)), 'MMMM d, yyyy')}
+										</p>
+									</div>
+
+									<Link href={`/blog/${data.slug}`} passHref>
+										<a className="title">{data.title}</a>
 									</Link>
+
+									<p>{data.summary}</p>
 								</li>
 							))}
 						</ul>
@@ -59,27 +61,27 @@ export default function BlogHome(props: { allPostsData: PostFrontMatter[] }) {
 }
 
 export async function getStaticProps() {
-	const allPostsData = getSortedPostsData();
+	const allPosts = getSortedPostsData();
 
-	return { props: { allPostsData } };
+	return { props: { allPosts } };
 }
 
 const StyledContainer = styled.section`
 	position: relative;
 
 	.main {
-		margin-top: 13em;
+		margin-top: 4em;
 
 		.heading {
 			font-size: 3rem;
 			font-weight: 600;
-			color: #094067e6;
+			color: #094067;
 			margin-bottom: 0;
 		}
 
 		.heading__text {
 			font-size: 1.2rem;
-			color: #094067e6;
+			color: #094067;
 			max-width: 44em;
 			line-height: 1.6;
 		}
@@ -89,41 +91,80 @@ const StyledContainer = styled.section`
 		font-size: 2rem;
 		margin-top: 3em;
 		margin-bottom: 1em;
-		color: #094067e6;
+		color: #094067;
 		font-weight: 600;
 	}
 
 	.articles {
 		display: grid;
-		grid-template-columns: auto auto;
+		grid-template-columns: auto;
 		gap: 3em;
 		list-style: none;
 		padding-left: 0;
+		padding-bottom: 10em;
+
+		@media (min-width: 1000px) {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 
 	.post__card {
-		border-radius: 4px;
-		margin-bottom: 3em;
-		cursor: pointer;
 		color: #094067;
+		padding: 1em 0;
 
-		.post__date {
-			margin: 0;
-			font-size: 0.85rem;
-			font-weight: 500;
+		.post__header {
+			display: flex;
+			align-items: baseline;
+
+			.post__date {
+				margin: 0;
+				font-size: 0.85rem;
+				font-weight: 500;
+				white-space: nowrap;
+			}
+
+			.hyphen {
+				margin: 0 0.5em;
+				transform: scale(2);
+			}
+
+			.post__tags {
+				text-transform: uppercase;
+
+				.tag {
+					margin-right: 0.5em;
+					font-size: 0.9rem;
+					font-weight: 500;
+					text-transform: lowercase;
+
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+			}
 		}
 
-		h3 {
-			font-size: 1.2rem;
-			color: #ee495c;
+		a {
+			color: inherit;
+
+			&:hover {
+				--d: none;
+			}
+		}
+
+		.title {
+			display: inline-block;
+			font-size: 1.7rem;
+			color: #b14949;
 			margin-top: 0.3em;
 			font-weight: 600;
+			font-family: var(--font-fam-text);
 		}
 
 		p {
 			font-size: 0.95rem;
 			opacity: 0.8;
-			font-weight: 500;
+			margin-bottom: 0;
 		}
 	}
 `;
