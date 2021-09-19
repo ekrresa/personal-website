@@ -39,6 +39,18 @@ fields:
     max: 
     step: 
     required: true
+- name: project_link
+  type: text
+  config:
+    required: false
+  label: Project Link
+  description: Url to deployed project
+- name: github_link
+  type: text
+  config:
+    required: false
+  label: Github Link
+  description: Url to online repo
 pages:
 - projects/anap-foundation-admin-portal.md
 - projects/dogs-wiki.md
