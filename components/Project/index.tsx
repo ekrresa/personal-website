@@ -1,36 +1,23 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
-import { IconType } from 'react-icons';
 import { useInView } from 'react-intersection-observer';
 import { motion, useAnimation } from 'framer-motion';
 import styled from 'styled-components';
-import { buildUrl } from 'cloudinary-build-url';
+import { FiExternalLink } from 'react-icons/fi';
+import { AiOutlineGithub } from 'react-icons/ai';
 
 type ProjectProps = {
 	projectLink?: string;
-	imagePublicID: string;
+	repoLink?: string;
+	image: string;
 	imageAlt: string;
 	projectTitle: string;
 	projectDesc: string;
 	alignment: 'left' | 'right';
 	stack?: string[];
-	links?: ProjectLink[];
-};
-
-type ProjectLink = {
-	url: string;
-	Icon: IconType;
 };
 
 export function Project(props: ProjectProps) {
-	const src = buildUrl(props.imagePublicID, {
-		cloud: { cloudName: 'chuck-huey' },
-		transformations: {
-			format: 'auto',
-			quality: 1,
-		},
-	});
-
 	const { ref, inView } = useInView();
 	const controls = useAnimation();
 
@@ -56,7 +43,7 @@ export function Project(props: ProjectProps) {
 			<div className="project__image">
 				<a href={props.projectLink} target="_blank" rel="noreferrer noopener">
 					<Image
-						src={src}
+						src={props.image}
 						alt={props.imageAlt}
 						width={100}
 						height={60}
@@ -78,15 +65,28 @@ export function Project(props: ProjectProps) {
 					</ul>
 				) : null}
 
-				{props.links ? (
-					<div className="links">
-						{props.links.map(({ Icon, url }) => (
-							<a key={url} href={url} target="_blank" rel="noreferrer noopener">
-								<Icon />
-							</a>
-						))}
-					</div>
-				) : null}
+				<div className="links">
+					{props.projectLink && (
+						<a
+							key={props.projectLink}
+							href={props.projectLink}
+							target="_blank"
+							rel="noreferrer noopener"
+						>
+							<FiExternalLink />
+						</a>
+					)}
+					{props.repoLink && (
+						<a
+							key={props.repoLink}
+							href={props.repoLink}
+							target="_blank"
+							rel="noreferrer noopener"
+						>
+							<AiOutlineGithub />
+						</a>
+					)}
+				</div>
 			</div>
 		</StyledProject>
 	);
@@ -155,14 +155,7 @@ const StyledProject = styled.section<{ alignment: string }>`
 		.links {
 			display: flex;
 			justify-content: flex-end;
-
-			a {
-				margin-right: 1em;
-
-				&:last-child {
-					margin-right: 0;
-				}
-			}
+			gap: 1em;
 
 			svg {
 				font-size: 1.4rem;

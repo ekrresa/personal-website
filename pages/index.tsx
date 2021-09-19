@@ -4,14 +4,13 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { motion, Variants } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
-import { AiOutlineGithub } from 'react-icons/ai';
-import { FiExternalLink } from 'react-icons/fi';
 
 import { Body } from '../components/Body';
 import { NavBar } from '../components/NavBar';
 import { Project } from '../components/Project';
 import { Footer } from '../components/Footer';
 import EntryWay from '../public/entryway.svg';
+import { getProjects, ProjectType } from '../lib/projects';
 
 const navList = [
 	{ text: 'blog', url: '/blog' },
@@ -53,8 +52,9 @@ const rightButtonVariant: Variants = {
 	visible: { opacity: 1, x: 0 },
 };
 
-export default function Homepage() {
+export default function Homepage(props: { projects: ProjectType[] }) {
 	const isNotMobile = useMediaQuery({ minWidth: 546 });
+	const { projects } = props;
 
 	return (
 		<>
@@ -196,31 +196,19 @@ export default function Homepage() {
 					<div className="container">
 						<h2 className="section__header">Projects</h2>
 
-						<Project
-							alignment="left"
-							projectTitle="ANAP Foundation Admin Portal"
-							imageAlt="star wars directory homepage"
-							imagePublicID="v1620831017/personal/portfolio/kayzQTL_cnbpvx"
-							projectDesc="An admin dashboard for monitoring activities on ANAP Foundation's Covid-19 project."
-							stack={['React', 'PostgreSQL', 'Redux', 'React Testing Library']}
-						/>
-
-						<Project
-							alignment="right"
-							imageAlt="star wars directory homepage"
-							imagePublicID="v1620830802/personal/portfolio/kH5eM1v_e4mkrd"
-							projectDesc="A web app to explore the star wars mythology."
-							projectLink="https://star-wars-five.now.sh/"
-							projectTitle="Star Wars Directory"
-							stack={['React', 'React Query', 'React Testing Library']}
-							links={[
-								{ url: 'https://star-wars-five.now.sh/', Icon: FiExternalLink },
-								{
-									url: 'https://github.com/chukky-ekrresa/star-wars-app',
-									Icon: AiOutlineGithub,
-								},
-							]}
-						/>
+						{projects.map((project, index) => (
+							<Project
+								key={project.title}
+								alignment={index % 2 === 0 ? 'left' : 'right'}
+								imageAlt={project.title}
+								projectDesc={project.description}
+								projectLink={project?.project_link}
+								repoLink={project?.github_link}
+								projectTitle={project.title}
+								stack={project.stack}
+								image={project.image}
+							/>
+						))}
 					</div>
 				</Section>
 
@@ -248,6 +236,12 @@ export default function Homepage() {
 			<Footer />
 		</>
 	);
+}
+
+export async function getStaticProps() {
+	const projects = getProjects();
+
+	return { props: { projects } };
 }
 
 const Section = styled.section`
