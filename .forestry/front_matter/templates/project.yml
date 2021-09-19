@@ -28,3 +28,5 @@ fields:
   config:
     maxSize: 64
   label: Image
+pages:
+- projects/anap-foundation-admin-portal.md
