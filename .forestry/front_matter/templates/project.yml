@@ -45,6 +45,7 @@ fields:
     required: false
   label: Project Link
   description: Url to deployed project
+  default: ''
 - name: github_link
   type: text
   config:
