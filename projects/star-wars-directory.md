@@ -8,5 +8,7 @@ title: Star Wars Directory
 description: A web app to explore the Star Wars mythology. Explore characters, ships,
   and movies.
 image: https://res.cloudinary.com/chuck-huey/image/upload/c_scale,dpr_auto,w_auto,q_auto,f_auto/v1632053958/personal/blog/images/kH5eM1v_e4mkrd_ndudzm.jpg
+project_link: https://star-wars-five.now.sh/
+github_link: https://github.com/chukky-ekrresa/star-wars-app
 
 ---
