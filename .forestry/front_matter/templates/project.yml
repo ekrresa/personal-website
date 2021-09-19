@@ -1,4 +1,30 @@
 ---
 label: Project
 hide_body: true
-fields: []
+fields:
+- name: title
+  type: text
+  config:
+    required: true
+  label: Title
+  description: The name of the project
+- name: description
+  type: textarea
+  default: ''
+  config:
+    required: true
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Description
+  description: Project description
+- name: stack
+  type: tag_list
+  default: []
+  label: Stack
+  description: Tech stack
+- name: image
+  type: file
+  config:
+    maxSize: 64
+  label: Image
