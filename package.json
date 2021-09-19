@@ -10,7 +10,6 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
-		"cloudinary-build-url": "^0.2.1",
 		"date-fns": "^2.19.0",
 		"framer-motion": "^4.1.14",
 		"gray-matter": "^4.0.2",
