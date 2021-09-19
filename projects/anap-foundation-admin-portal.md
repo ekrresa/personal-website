@@ -9,5 +9,6 @@ description: A dashboard for monitoring activities on ANAP Foundation's Covid-19
   It gives a visual view into Covid cases in the country, and manages activities of
   agents on ground.
 image: https://res.cloudinary.com/chuck-huey/image/upload/c_scale,dpr_auto,w_auto,q_auto,f_auto/v1632051914/personal/blog/images/kayzQTL_cnbpvx_bzpayv.png
+order: 1
 
 ---
