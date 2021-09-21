@@ -43,6 +43,10 @@ export const Article = styled.article`
 	.post__date {
 		margin-bottom: 5em;
 		color: rgb(156, 163, 175);
+
+		@media (min-width: 830px) {
+			text-align: center;
+		}
 	}
 
 	.body {
