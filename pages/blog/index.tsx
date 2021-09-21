@@ -9,7 +9,7 @@ import { getSortedPostsData, PostFrontMatter } from '../../lib/posts';
 import { Footer } from '../../components/Footer';
 
 const navList = [
-	{ text: 'portfolio', url: '/' },
+	{ text: 'about', url: '/' },
 	{ text: 'contact', url: '/#contact' },
 ];
 
